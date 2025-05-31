@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/visor-tickets/static/css/main.ebc79688.css",
+    "main.js": "/visor-tickets/static/js/main.8db1d67d.js",
+    "static/js/453.ed3810f9.chunk.js": "/visor-tickets/static/js/453.ed3810f9.chunk.js",
+    "index.html": "/visor-tickets/index.html",
+    "main.ebc79688.css.map": "/visor-tickets/static/css/main.ebc79688.css.map",
+    "main.8db1d67d.js.map": "/visor-tickets/static/js/main.8db1d67d.js.map",
+    "453.ed3810f9.chunk.js.map": "/visor-tickets/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ebc79688.css",
+    "static/js/main.8db1d67d.js"
+  ]
+}
