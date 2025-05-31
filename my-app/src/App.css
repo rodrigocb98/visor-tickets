@@ -1,0 +1,138 @@
+/* Estilos base */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1e2a38;
+  color: #f0f6fc;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header {
+  color: #64b5f6;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+/* Inputs */
+.file-input {
+  display: block;
+  margin: 0 auto 2rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #64b5f6;
+  background-color: #0d1b2a;
+  color: #f0f6fc;
+}
+
+/* Filtros */
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.filters-container label {
+  display: flex;
+  flex-direction: column;
+  color: #64b5f6;
+}
+
+.filters-container select {
+  padding: 0.4rem;
+  border-radius: 4px;
+  border: 1px solid #64b5f6;
+  background-color: #0d1b2a;
+  color: #f0f6fc;
+}
+
+.filters-container button {
+  padding: 0.5rem 1rem;
+  background-color: #64b5f6;
+  color: #0d1b2a;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.filters-container button:hover {
+  background-color: #90caf9;
+}
+
+/* Tabla */
+.ticket-table-container {
+  overflow-x: auto;
+}
+
+.ticket-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #102331;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+  min-width: 800px;
+}
+
+.ticket-table th,
+.ticket-table td {
+  border: 1px solid #1f3a52;
+  padding: 10px;
+  text-align: left;
+}
+
+.ticket-table th {
+  background-color: #0d1b2a;
+  color: #64b5f6;
+  font-weight: bold;
+}
+
+.ticket-table td {
+  background-color: #12293d;
+}
+
+.ticket-table tr:nth-child(even) td {
+  background-color: #163147;
+}
+
+.ticket-table tr:hover td {
+  background-color: #1c3b56;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .header {
+    font-size: 1.5rem;
+  }
+
+  .filters-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters-container label,
+  .filters-container button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .ticket-table {
+    font-size: 0.85rem;
+  }
+}
+.fila-error td {
+  background-color: #462323 !important;
+  color: #f88 !important;
+  font-weight: bold;
+}
