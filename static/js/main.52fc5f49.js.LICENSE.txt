@@ -5,7 +5,9 @@ https://github.com/mholt/PapaParse
 License: MIT
 */
 
-/*! sheetjs (C) 2013-present SheetJS -- http://sheetjs.com */
+/*! cpexcel.js (C) 2013-present SheetJS -- http://sheetjs.com */
+
+/*! cputils.js (C) 2013-present SheetJS -- http://sheetjs.com */
 
 /**
  * @license React
