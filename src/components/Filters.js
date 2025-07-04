@@ -40,7 +40,7 @@ export default function Filters({
       </label>
 
       <label>
-        Técnico:
+        Área Técnica:
         <select value={filtroTecnico} onChange={(e) => setFiltroTecnico(e.target.value)}>
           <option value="">Todos</option>
           {tecnicos.map((tec, index) => (
