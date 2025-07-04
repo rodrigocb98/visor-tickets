@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/visor-tickets/static/css/main.6ba973f0.css",
-    "main.js": "/visor-tickets/static/js/main.aace19c4.js",
+    "main.js": "/visor-tickets/static/js/main.0fd4624c.js",
     "static/js/453.ed3810f9.chunk.js": "/visor-tickets/static/js/453.ed3810f9.chunk.js",
     "static/media/logo2.png": "/visor-tickets/static/media/logo2.4398324d19d6842bad7e.png",
     "static/media/LogoM.png": "/visor-tickets/static/media/LogoM.030efc45f578d50b7749.png",
     "static/media/logo3.png": "/visor-tickets/static/media/logo3.ab05a1cec544172b7c28.png",
     "index.html": "/visor-tickets/index.html",
     "main.6ba973f0.css.map": "/visor-tickets/static/css/main.6ba973f0.css.map",
-    "main.aace19c4.js.map": "/visor-tickets/static/js/main.aace19c4.js.map",
+    "main.0fd4624c.js.map": "/visor-tickets/static/js/main.0fd4624c.js.map",
     "453.ed3810f9.chunk.js.map": "/visor-tickets/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6ba973f0.css",
-    "static/js/main.aace19c4.js"
+    "static/js/main.0fd4624c.js"
   ]
 }
