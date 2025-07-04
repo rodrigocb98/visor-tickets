@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/visor-tickets/static/css/main.6ba973f0.css",
-    "main.js": "/visor-tickets/static/js/main.a88d51d2.js",
+    "main.css": "/visor-tickets/static/css/main.51639ff4.css",
+    "main.js": "/visor-tickets/static/js/main.ef4d113b.js",
     "static/js/453.ed3810f9.chunk.js": "/visor-tickets/static/js/453.ed3810f9.chunk.js",
     "static/media/logo2.png": "/visor-tickets/static/media/logo2.4398324d19d6842bad7e.png",
     "static/media/LogoM.png": "/visor-tickets/static/media/LogoM.030efc45f578d50b7749.png",
-    "static/media/logo3.png": "/visor-tickets/static/media/logo3.aa3b485bcd55c094fc2a.png",
+    "static/media/logo3.png": "/visor-tickets/static/media/logo3.ab05a1cec544172b7c28.png",
     "index.html": "/visor-tickets/index.html",
-    "main.6ba973f0.css.map": "/visor-tickets/static/css/main.6ba973f0.css.map",
-    "main.a88d51d2.js.map": "/visor-tickets/static/js/main.a88d51d2.js.map",
+    "main.51639ff4.css.map": "/visor-tickets/static/css/main.51639ff4.css.map",
+    "main.ef4d113b.js.map": "/visor-tickets/static/js/main.ef4d113b.js.map",
     "453.ed3810f9.chunk.js.map": "/visor-tickets/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6ba973f0.css",
-    "static/js/main.a88d51d2.js"
+    "static/css/main.51639ff4.css",
+    "static/js/main.ef4d113b.js"
   ]
 }
