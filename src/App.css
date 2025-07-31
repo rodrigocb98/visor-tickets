@@ -184,6 +184,21 @@ body {
   color: #ffffff;
   font-size: 2rem;
   margin-bottom: 2rem;
+  text-align: center;
+  word-break: break-word;
+}
+
+/* Responsivo para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .proyecto-selector h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .proyecto-selector h2 {
+    font-size: 1.2rem;
+  }
 }
 
 .proyecto-grid {
@@ -225,4 +240,24 @@ body {
 .proyecto-btn span {
   font-weight: bold;
   font-size: 1rem;
+}
+/* Botón Volver */
+.volver-container {
+  padding: 16px;
+  text-align: left;
+}
+
+.volver-btn {
+  background-color: #4874c4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.volver-btn:hover {
+  background-color: #355aa0;
 }

@@ -11,7 +11,6 @@ import { normalizarSecihti, normalizarMujeres } from "./utils/normalizar";
 import exportarExcelMujeres from "./utils/exportarMujeres";
 import { getDescripcion } from "./utils/getDescripcion";
 import { getSolucion } from "./utils/getSolucion";
-import { useNavigate } from "react-router-dom";
 import "./App.css";
 
 const nombreMes = {
@@ -20,7 +19,7 @@ const nombreMes = {
   "090": "Septiembre", "100": "Octubre", "110": "Noviembre", "120": "Diciembre"
 };
 
-export default function CsvTicketViewer({ proyecto }) {
+export default function CsvTicketViewer({ proyecto, volver }) {
   const [data, setData] = useState([]);
   const [filtroAnio, setFiltroAnio] = useState("");
   const [filtroMes, setFiltroMes] = useState("");
@@ -28,7 +27,6 @@ export default function CsvTicketViewer({ proyecto }) {
   const [aniosDisponibles, setAniosDisponibles] = useState([]);
   const [mesesDisponibles, setMesesDisponibles] = useState([]);
   const [tecnicosDisponibles, setTecnicosDisponibles] = useState([]);
-  const navigate = useNavigate();
 
   const normalizeString = (str) => str?.replace(/[^0-9]/g, "") || "";
 
@@ -89,18 +87,17 @@ export default function CsvTicketViewer({ proyecto }) {
 
             tecnicosIndividuales.forEach(t => tecnicoSet.add(t));
 
-           return {
-  ...row,
-  "Descripción": cleanDescription(getDescripcion(row)),
-  "Solución":
-    (proyecto === "SECIHTI" || proyecto === "MUJERES")
-      ? cleanDescription(getSolucion(row))
-      : row["Solución"],
-  "Asignado a - Grupo de técnicos": grupoTecnicos,
-  "Tiempo de Respuesta (Dias, hrs : min : seg)": tiempoRespuesta,
-  _tecnicosIndividuales: tecnicosIndividuales
-};
-
+            return {
+              ...row,
+              "Descripción": cleanDescription(getDescripcion(row)),
+              "Solución":
+                (proyecto === "SECIHTI" || proyecto === "MUJERES")
+                  ? cleanDescription(getSolucion(row))
+                  : row["Solución"],
+              "Asignado a - Grupo de técnicos": grupoTecnicos,
+              "Tiempo de Respuesta (Dias, hrs : min : seg)": tiempoRespuesta,
+              _tecnicosIndividuales: tecnicosIndividuales
+            };
           });
 
           const sorted = [...rows].sort((a, b) =>
@@ -139,11 +136,16 @@ export default function CsvTicketViewer({ proyecto }) {
 
   const sinResultadosPorMes = filtroMes && filteredData.length === 0;
 
-  const columnsUNADM_PREPA = [
-    "No.", "ID", "Fecha de apertura", "Título", "Tipo", "Descripción",
-    "Tiempo de Respuesta (Dias, hrs : min : seg)", "Fecha de solución", "Prioridad",
-    "Asignado a - Grupo de técnicos", "Observaciones"
-  ];
+const columnsUNADM_PREPA = [
+  "No.", "ID", "Título", "Descripción", "Prioridad", "Fecha de apertura", "Fecha y hora de solicitud",
+  "(Opcional. Solicitud de\n retroalimentación, elementos\n adicionales o similares)",
+  "Respuesta de operador",
+  "(Opcional. Ejecución de tareas por\n maquina p.e conversión OVA,\n copiado, etc.)",
+  "Conclusión de tareas por\n máquina",
+  "Fecha de solución", "Tiempo efectivo de\n atención",
+  "Observaciones"
+];
+
 
   const columnsSECIHTI = [
     "No.",
@@ -185,6 +187,14 @@ export default function CsvTicketViewer({ proyecto }) {
 
   return (
     <div className="app-container">
+      {volver && (
+        <div className="volver-container">
+          <button className="volver-btn" onClick={volver}>
+            ← Volver a seleccionar proyecto
+          </button>
+        </div>
+      )}
+
       <Header proyecto={proyecto} />
       <FileUploader onUpload={handleFileUpload} />
 

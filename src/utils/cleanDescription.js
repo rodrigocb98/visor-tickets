@@ -1,6 +1,7 @@
 export const cleanDescription = (text = "") => {
   const frasesAEliminar = [
     "Buena tarde,", "Buenas tardes", "Buena tarde", "Saludos y gracias", "Buenas tardes,",
+    "Solicito por este medio la ","Solicito por este medio","Solicito de su apoyo para", "Solicito la","Solicito",
     "Saludos", "Buena noche", "Buenas noches", "Buen día", "Buena noche, ", ", ", "Hola", 
     "Hola .", " Excelente día. :)", "Gracias.", "Gracias. :)", " Graciasexcelente día. :)", 
     "Gracias", "Quedo en espera de sus comentarios.", 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import CsvTicketViewer from "./CsvTicketViewer";
-import ProyectoSelector from "./components/ProyectoSelector"; // ✅ debe coincidir con el nombre del archivo
-import "./App.css"
+import ProyectoSelector from "./components/ProyectoSelector";
+import "./App.css";
+
 function App() {
   const [proyecto, setProyecto] = useState(null);
 
@@ -10,7 +11,7 @@ function App() {
       {!proyecto ? (
         <ProyectoSelector onSelect={setProyecto} />
       ) : (
-        <CsvTicketViewer proyecto={proyecto} />
+        <CsvTicketViewer proyecto={proyecto} volver={() => setProyecto(null)} />
       )}
     </div>
   );
