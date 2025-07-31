@@ -1,18 +1,23 @@
 {
   "files": {
-    "main.css": "/visor-tickets/static/css/main.6ba973f0.css",
-    "main.js": "/visor-tickets/static/js/main.0fd4624c.js",
+    "main.css": "/visor-tickets/static/css/main.69fed08e.css",
+    "main.js": "/visor-tickets/static/js/main.a2b7c098.js",
     "static/js/453.ed3810f9.chunk.js": "/visor-tickets/static/js/453.ed3810f9.chunk.js",
     "static/media/logo2.png": "/visor-tickets/static/media/logo2.4398324d19d6842bad7e.png",
+    "static/media/MUJERES_Logo_(2025).png": "/visor-tickets/static/media/MUJERES_Logo_(2025).22d5b0b4f2e4229fc628.png",
+    "static/media/cns_logo.png": "/visor-tickets/static/media/cns_logo.3d7eb7deee58c612884c.png",
     "static/media/LogoM.png": "/visor-tickets/static/media/LogoM.030efc45f578d50b7749.png",
+    "static/media/mujeres-logo.png": "/visor-tickets/static/media/mujeres-logo.0bfb6385e18c7ddcad83.png",
+    "static/media/secihti-logo.png": "/visor-tickets/static/media/secihti-logo.6fcbfbbd04c3144020bb.png",
+    "static/media/Logo-CNS.png": "/visor-tickets/static/media/Logo-CNS.a5a38a1e567f9bd7d9da.png",
     "static/media/logo3.png": "/visor-tickets/static/media/logo3.ab05a1cec544172b7c28.png",
     "index.html": "/visor-tickets/index.html",
-    "main.6ba973f0.css.map": "/visor-tickets/static/css/main.6ba973f0.css.map",
-    "main.0fd4624c.js.map": "/visor-tickets/static/js/main.0fd4624c.js.map",
+    "main.69fed08e.css.map": "/visor-tickets/static/css/main.69fed08e.css.map",
+    "main.a2b7c098.js.map": "/visor-tickets/static/js/main.a2b7c098.js.map",
     "453.ed3810f9.chunk.js.map": "/visor-tickets/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6ba973f0.css",
-    "static/js/main.0fd4624c.js"
+    "static/css/main.69fed08e.css",
+    "static/js/main.a2b7c098.js"
   ]
 }
