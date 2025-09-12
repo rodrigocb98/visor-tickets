@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/visor-tickets/static/css/main.195c35f0.css",
-    "main.js": "/visor-tickets/static/js/main.5f38ce3d.js",
+    "main.css": "/visor-tickets/static/css/main.89040543.css",
+    "main.js": "/visor-tickets/static/js/main.84a5b15b.js",
     "static/js/453.ed3810f9.chunk.js": "/visor-tickets/static/js/453.ed3810f9.chunk.js",
     "static/media/logo2.png": "/visor-tickets/static/media/logo2.4398324d19d6842bad7e.png",
     "static/media/MUJERES_Logo_(2025).png": "/visor-tickets/static/media/MUJERES_Logo_(2025).22d5b0b4f2e4229fc628.png",
@@ -12,12 +12,12 @@
     "static/media/Logo-CNS.png": "/visor-tickets/static/media/Logo-CNS.a5a38a1e567f9bd7d9da.png",
     "static/media/logo3.png": "/visor-tickets/static/media/logo3.ab05a1cec544172b7c28.png",
     "index.html": "/visor-tickets/index.html",
-    "main.195c35f0.css.map": "/visor-tickets/static/css/main.195c35f0.css.map",
-    "main.5f38ce3d.js.map": "/visor-tickets/static/js/main.5f38ce3d.js.map",
+    "main.89040543.css.map": "/visor-tickets/static/css/main.89040543.css.map",
+    "main.84a5b15b.js.map": "/visor-tickets/static/js/main.84a5b15b.js.map",
     "453.ed3810f9.chunk.js.map": "/visor-tickets/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.195c35f0.css",
-    "static/js/main.5f38ce3d.js"
+    "static/css/main.89040543.css",
+    "static/js/main.84a5b15b.js"
   ]
 }
