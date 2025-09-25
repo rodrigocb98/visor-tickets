@@ -58,13 +58,13 @@ export default function exportarExcel(data, columns, proyecto, mes, anio) {
     worksheet["H1"] = { t: "s", v: "Tiempo a descontar por espera", s: headerStyle };
     worksheet["J1"] = { t: "s", v: 'Tiempo a descontar por se independientemente acciones "humanas"', s: headerStyle };
 
-    worksheet["F2"] = { t: "s", v: "a", s: headerStyle };
-    worksheet["G2"] = { t: "s", v: "b", s: headerStyle };
-    worksheet["H2"] = { t: "s", v: "d", s: headerStyle };
-    worksheet["I2"] = { t: "s", v: "d1", s: headerStyle };
-    worksheet["J2"] = { t: "s", v: "e", s: headerStyle };
-    worksheet["K2"] = { t: "s", v: "e1", s: headerStyle };
-    worksheet["L2"] = { t: "s", v: "f", s: headerStyle };
+    worksheet["G2"] = { t: "s", v: "a", s: headerStyle };
+    worksheet["H2"] = { t: "s", v: "b", s: headerStyle };
+    worksheet["I2"] = { t: "s", v: "d", s: headerStyle };
+    worksheet["J2"] = { t: "s", v: "d1", s: headerStyle };
+    worksheet["K2"] = { t: "s", v: "e", s: headerStyle };
+    worksheet["L2"] = { t: "s", v: "e1", s: headerStyle };
+    worksheet["M2"] = { t: "s", v: "f", s: headerStyle };
 
     worksheet["!merges"] = [
       { s: { r: 0, c: 7 }, e: { r: 0, c: 8 } },  // H1:I1
@@ -86,11 +86,12 @@ export default function exportarExcel(data, columns, proyecto, mes, anio) {
       "(Solicitud de información a cliente)",
       "(Respuesta del cliente)",
       "(Fecha y hora de inicio de ejecución por VMs)",
+      "(Fecha y hora de fin de ejecución por VMs)",
       "(Fecha y hora de solución)",
-      "(=f-b(d1-d)-(e1-e)"
+      "=f-b(d1-d)-(e1-e)"
     ];
     descripciones.forEach((texto, i) => {
-      const colIndex = 5 + i; // F (5) ... M (12)
+      const colIndex = 6 + i; // F (5) ... M (12)
       const cellRef = XLSX.utils.encode_cell({ r: 3, c: colIndex });
       worksheet[cellRef] = { t: "s", v: texto, s: textStyle };
     });

@@ -11,12 +11,28 @@ import { normalizarSecihti, normalizarMujeres } from "./utils/normalizar";
 import exportarExcelMujeres from "./utils/exportarMujeres";
 import { getDescripcion } from "./utils/getDescripcion";
 import { getSolucion } from "./utils/getSolucion";
+import { columnMapping } from "./utils/mapColumnNames";
 import "./App.css";
 
 const nombreMes = {
   "010": "Enero", "020": "Febrero", "030": "Marzo", "040": "Abril",
   "050": "Mayo", "060": "Junio", "070": "Julio", "080": "Agosto",
   "090": "Septiembre", "100": "Octubre", "110": "Noviembre", "120": "Diciembre"
+};
+
+// 🔹 Helpers para el cálculo
+const safeDiff = (f1, f2) => {
+  if (!f1 || !f2) return 0;
+  return f1 - f2;
+};
+
+const formatDiff = (ms) => {
+  if (ms === null) return null;
+  const d = Math.floor(ms / (1000 * 60 * 60 * 24));
+  const h = Math.floor((ms / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((ms / (1000 * 60)) % 60);
+  const s = Math.floor((ms / 1000) % 60);
+  return `${d}d ${h}h ${m}m ${s}s`;
 };
 
 export default function CsvTicketViewer({ proyecto, volver }) {
@@ -60,8 +76,36 @@ export default function CsvTicketViewer({ proyecto, volver }) {
         complete: (results) => {
           let rows = results.data;
 
+          // 🔹 Normalizar nombres de columnas
+          rows = rows.map(row => {
+            const newRow = {};
+            Object.keys(row).forEach(colName => {
+              const newColName = columnMapping[colName] || colName;
+              newRow[newColName] = row[colName];
+            });
+            return newRow;
+          });
+
           if (proyecto === "SECIHTI") {
             rows = rows.map(normalizarSecihti).filter(r => r.ID && r.ID.trim() !== "");
+              rows = rows.map(row => {
+            let servicio = row["Servicio"] || "";
+            let partes = servicio.split(">").map(p => p.trim());
+
+            let servicioBase = partes[0] || "";
+            let actividad = partes[1] || "";
+            let categoria = partes[2] || "";
+            let subcategoria = partes[3] || "";
+
+            return {
+              ...row,
+              "Servicio": servicioBase,
+              "Actividad": actividad,
+              "Categoría": categoria,
+              "Subcategoria": subcategoria,
+            };
+          });
+            
           } else if (proyecto === "MUJERES") {
             rows = rows.map(normalizarMujeres).filter(r => r.ID && r.ID.trim() !== "");
           } else {
@@ -71,6 +115,7 @@ export default function CsvTicketViewer({ proyecto, volver }) {
           const tecnicoSet = new Set();
 
           rows = rows.map(row => {
+            // 🔹 Fechas para tiempo respuesta
             const fechaSolucion = parseFecha(row["Fecha de solución"] || row["Fecha de resolución"] || "");
             const fechaApertura = parseFecha(row["Fecha y hora de apertura"] || row["Fecha de apertura"] || "");
             const diff = fechaSolucion && fechaApertura ? fechaSolucion - fechaApertura : null;
@@ -79,6 +124,29 @@ export default function CsvTicketViewer({ proyecto, volver }) {
               ? `${Math.floor(diff / (1000 * 60 * 60 * 24))}d ${Math.floor((diff / (1000 * 60 * 60)) % 24)}h ${Math.floor((diff / (1000 * 60)) % 60)}m ${Math.floor((diff / 1000) % 60)}s`
               : "Error en fechas";
 
+            // 🔹 Fechas para tiempo efectivo de atención
+            const fechaResolucion = parseFecha(row["Fecha de solución"] || row["Fecha de resolución"] || "");
+            const fechaInicioTrabajos = parseFecha(row["Fecha y hora de inicio de trabajos"] || "");
+            const fechaSolicitudInfo = parseFecha(row["(Opcional. Solicitud de retroalimentación, elementos adicionales o similares)"] || "");
+            const fechaRespuestaOperador = parseFecha(row["Respuesta de operador"] || "");
+            const fechaEjecucion = parseFecha(row["(Opcional. Ejecución de tareas por maquina p.e conversión OVA, copiado, etc.)"] || "");
+            const fechaConclusion = parseFecha(row["Conclusión de tareas por máquina"] || "");
+
+            let tiempoEfectivo = null;
+            if (fechaResolucion && fechaInicioTrabajos) {
+              const base = fechaResolucion - fechaInicioTrabajos;
+
+              // ✅ si safeDiff devuelve null/undefined => usa 0
+              const resta1 = safeDiff(fechaRespuestaOperador, fechaSolicitudInfo) || 0;
+              const resta2 = safeDiff(fechaConclusion, fechaEjecucion) || 0;
+
+              tiempoEfectivo = base - resta1 - resta2;
+            }
+
+            const tiempoEfectivoFmt = tiempoEfectivo !== null ? formatDiff(tiempoEfectivo) : null;
+
+
+            // 🔹 Técnicos
             const grupoTecnicos = (row["Asignado a - Grupo de técnicos"] || "").replace(/<br\s*\/?>/gi, ", ");
             const tecnicosIndividuales = grupoTecnicos
               .split(",")
@@ -96,6 +164,7 @@ export default function CsvTicketViewer({ proyecto, volver }) {
                   : row["Solución"],
               "Asignado a - Grupo de técnicos": grupoTecnicos,
               "Tiempo de Respuesta (Dias, hrs : min : seg)": tiempoRespuesta,
+              "Tiempo efectivo de atención": tiempoEfectivoFmt,  // ✅ nueva columna
               _tecnicosIndividuales: tecnicosIndividuales
             };
           });
@@ -136,16 +205,23 @@ export default function CsvTicketViewer({ proyecto, volver }) {
 
   const sinResultadosPorMes = filtroMes && filteredData.length === 0;
 
-const columnsUNADM_PREPA = [
-  "No.", "ID", "Título", "Descripción", "Prioridad", "Fecha de apertura", "Fecha y hora de solicitud",
-  "(Opcional. Solicitud de\n retroalimentación, elementos\n adicionales o similares)",
-  "Respuesta de operador",
-  "(Opcional. Ejecución de tareas por\n maquina p.e conversión OVA,\n copiado, etc.)",
-  "Conclusión de tareas por\n máquina",
-  "Fecha de solución", "Tiempo efectivo de\n atención",
-  "Observaciones"
-];
-
+  const columnsUNADM_PREPA = [
+    "No.",
+    "ID",
+    "Título",
+    "Descripción",
+    "Prioridad",
+    "Asignado a - Grupo de técnicos",
+    "Fecha de apertura",
+    "Fecha y hora de inicio de trabajos",
+    "(Opcional. Solicitud de retroalimentación, elementos adicionales o similares)",
+    "Respuesta de operador",
+    "(Opcional. Ejecución de tareas por maquina p.e conversión OVA, copiado, etc.)",
+    "Conclusión de tareas por máquina",
+    "Fecha de solución",
+    "Tiempo efectivo de atención",   // ✅ ya está aquí
+    "Observaciones",
+  ];
 
   const columnsSECIHTI = [
     "No.",
@@ -182,8 +258,8 @@ const columnsUNADM_PREPA = [
 
   const columns =
     proyecto === "SECIHTI" ? columnsSECIHTI :
-    proyecto === "MUJERES" ? columnsMUJERES :
-    columnsUNADM_PREPA;
+      proyecto === "MUJERES" ? columnsMUJERES :
+        columnsUNADM_PREPA;
 
   return (
     <div className="app-container">
@@ -229,7 +305,22 @@ const columnsUNADM_PREPA = [
       )}
 
       {filteredData.length > 0 && (
-        <TicketTable data={filteredData} columns={columns} />
+        <TicketTable
+          data={filteredData}
+          columns={columns}
+          onDataChange={(updatedData) => {
+            setData(prevData => {
+              const newData = [...prevData];
+              updatedData.forEach((row, i) => {
+                const globalIndex = prevData.indexOf(filteredData[i]);
+                if (globalIndex !== -1) {
+                  newData[globalIndex] = row;
+                }
+              });
+              return newData;
+            });
+          }}
+        />
       )}
     </div>
   );
